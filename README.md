@@ -19,7 +19,10 @@ Install Flutter SDK.
 - `unzip /tmp/flutter -d $(git rev-parse --show-toplevel)/bin/`
 - `flutter doctor`
 
-## Run
+## Flutter CLI
 
 Application run command in app directory.
 - `flutter run`
+
+Application build command.
+- `flutter build`
