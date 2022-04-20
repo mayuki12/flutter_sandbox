@@ -18,3 +18,8 @@ Install Flutter SDK.
 - `curl https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_2.10.3-stable.zip -o /tmp/flutter`
 - `unzip /tmp/flutter -d $(git rev-parse --show-toplevel)/bin/`
 - `flutter doctor`
+
+## Run
+
+Application run command in app directory.
+- `flutter run`
