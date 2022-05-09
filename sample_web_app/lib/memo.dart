@@ -14,15 +14,21 @@ class MyApp extends StatelessWidget {
          appBar: AppBar(
            title:const Text('Flutter Note'),
          ),
-         body: Column(
-           children: [
-             const TextField(),
-             ElevatedButton(
-               onPressed: (){}, 
-               child: const Text('保存'),
-             ),
-           ],
-         ),
+         body: Padding(
+           padding: const EdgeInsets.all(16),
+           child: Column(
+            children: [
+              const Spacer(),
+              const TextField(),
+              const SizedBox(height: 32),
+              ElevatedButton(
+                onPressed: (){}, 
+                child: const Text('保存'),
+              ),
+              const Spacer()
+            ],
+          ),
+        ),
       ),
     );
   }
