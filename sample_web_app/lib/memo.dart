@@ -14,7 +14,15 @@ class MyApp extends StatelessWidget {
          appBar: AppBar(
            title:const Text('Flutter Note'),
          ),
-         body: Container(),
+         body: Column(
+           children: [
+             const TextField(),
+             ElevatedButton(
+               onPressed: (){}, 
+               child: const Text('保存'),
+             ),
+           ],
+         ),
       ),
     );
   }
