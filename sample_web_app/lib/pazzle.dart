@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const PuzzleApp());
@@ -67,11 +69,11 @@ class _PuzzlePageState extends State<PuzzlePage> {
         title: const Text('スライドパズル'),
         actions: [
           IconButton(
-            onPressed: () =>  {}, 
+            onPressed: () =>  loadTileNumbers(),
             icon: const Icon(Icons.play_arrow),
           ),
           IconButton(
-            onPressed: () => {}, 
+            onPressed: () => saveTileNumbers(), 
             icon: const Icon(Icons.save),
           )
         ],
@@ -138,6 +140,23 @@ class _PuzzlePageState extends State<PuzzlePage> {
       if (numbers[i] != correctNumbers[i]) { return false;}
     }
     return true;
+  }
+  void saveTileNumbers() async {
+    final value = jsonEncode(tileNumbers);
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('TILE_NUMBERS', value);
+  }
+  void loadTileNumbers() async {
+    final prefs = await SharedPreferences.getInstance();
+    final value = prefs.getString('TILE_NUMBERS');
+    if (value != null) {
+      final numbers = (jsonDecode(value) as List<dynamic>)
+      .map((v) => v as int)
+      .toList();
+      setState(() {
+        tileNumbers = numbers;
+      });
+    }
   }
 }
 
