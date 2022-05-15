@@ -84,6 +84,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
               child: Center(
                 child: TilesView(
                   numbers: tileNumbers,
+                  isCorrect: calclsCorrect(tileNumbers),
                 ),
               ),
             ),
@@ -99,14 +100,23 @@ class _PuzzlePageState extends State<PuzzlePage> {
       ),
     );
   }
+  bool calclsCorrect(List<int> numbers) {
+    final correctNumbers = [1,2,3,4,5,6,7,8,0];
+    for(int i=0; i < correctNumbers.length; i++) {
+      if (numbers[i] != correctNumbers[i]) { return false;}
+    }
+    return true;
+  }
 }
 
 class TilesView extends StatelessWidget {
   final List<int> numbers;
+  final bool isCorrect;
 
   const TilesView({
     Key? key,
     required this.numbers,
+    required this.isCorrect
     }) : super(key: key);
 
   @override
@@ -119,7 +129,10 @@ class TilesView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 24),
       children: numbers.map ((number) {
         if (number == 0) {return Container();}
-        return TileView(number: number, color: Colors.blue, onPressed: () => {});
+        return TileView(
+          number: number, 
+          color: isCorrect ? Colors.green:Colors.blue, 
+          onPressed: () => {});
       }).toList()
     );
   }
